@@ -25,6 +25,7 @@ export interface ColumnOptions extends ColumnCommonOptions {
     width?: number;
     /**
      * Indicates if column's value can be set to NULL.
+     * Default value is "false".
      */
     nullable?: boolean;
     /**
@@ -111,13 +112,25 @@ export interface ColumnOptions extends ColumnCommonOptions {
      */
     enumName?: string;
     /**
-     * Generated column expression. Supports only in MySQL.
+     * If this column is primary key then this specifies the name for it.
+     */
+    primaryKeyConstraintName?: string;
+    /**
+     * If this column is foreign key then this specifies the name for it.
+     */
+    foreignKeyConstraintName?: string;
+    /**
+     * Generated column expression.
      */
     asExpression?: string;
     /**
-     * Generated column type. Supports only in MySQL.
+     * Generated column type.
      */
     generatedType?: "VIRTUAL" | "STORED";
+    /**
+     * Identity column type. Supports only in Postgres 10+.
+     */
+    generatedIdentity?: "ALWAYS" | "BY DEFAULT";
     /**
      * Return type of HSTORE column.
      * Returns value as string or as object.

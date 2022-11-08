@@ -1,9 +1,13 @@
 import { Router } from "express";
+import { ClientesController } from "../controller/clientesController";
 
 const express = require("express");
-const rota = Router();
+const rotas = Router();
 
-rota.get("/", controller.listar);
-rota.post("/", controller.inserir);
-rota.get(":matricula", controller.buscarPorId);
-rota.delete(":id", controller.deletar);
+const controller = new ClientesController();
+
+rotas.get("/", controller.listar);
+rotas.get("/:matricula", controller.buscarPorMatricula);
+rotas.post("/", controller.inserir);
+
+export default rotas;

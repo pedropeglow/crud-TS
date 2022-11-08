@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
-export class clientes {
+export class Clientes {
   @PrimaryGeneratedColumn()
   matricula: number;
 

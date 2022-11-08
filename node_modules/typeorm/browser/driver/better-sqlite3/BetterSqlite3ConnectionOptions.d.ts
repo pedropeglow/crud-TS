@@ -1,8 +1,8 @@
-import { BaseConnectionOptions } from "../../connection/BaseConnectionOptions";
+import { BaseDataSourceOptions } from "../../data-source/BaseDataSourceOptions";
 /**
  * Sqlite-specific connection options.
  */
-export interface BetterSqlite3ConnectionOptions extends BaseConnectionOptions {
+export interface BetterSqlite3ConnectionOptions extends BaseDataSourceOptions {
     /**
      * Database type.
      */
@@ -11,6 +11,11 @@ export interface BetterSqlite3ConnectionOptions extends BaseConnectionOptions {
      * Storage type or path to the storage.
      */
     readonly database: string;
+    /**
+     * The driver object
+     * This defaults to require("better-sqlite3")
+     */
+    readonly driver?: any;
     /**
      * Encryption key for for SQLCipher.
      */
@@ -47,4 +52,9 @@ export interface BetterSqlite3ConnectionOptions extends BaseConnectionOptions {
      * Provide a function that gets called with every SQL string executed by the database connection.
      */
     readonly verbose?: Function;
+    /**
+     * Relative or absolute path to the native addon (better_sqlite3.node).
+     */
+    readonly nativeBinding?: string;
+    readonly poolSize?: never;
 }

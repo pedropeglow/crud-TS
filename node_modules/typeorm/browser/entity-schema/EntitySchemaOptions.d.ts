@@ -1,4 +1,4 @@
-import { Connection, SelectQueryBuilder } from "..";
+import { DataSource, EntitySchemaEmbeddedColumnOptions, SelectQueryBuilder } from "..";
 import { EntitySchemaIndexOptions } from "./EntitySchemaIndexOptions";
 import { EntitySchemaColumnOptions } from "./EntitySchemaColumnOptions";
 import { EntitySchemaRelationOptions } from "./EntitySchemaRelationOptions";
@@ -7,6 +7,7 @@ import { TableType } from "../metadata/types/TableTypes";
 import { EntitySchemaUniqueOptions } from "./EntitySchemaUniqueOptions";
 import { EntitySchemaCheckOptions } from "./EntitySchemaCheckOptions";
 import { EntitySchemaExclusionOptions } from "./EntitySchemaExclusionOptions";
+import { EntitySchemaRelationIdOptions } from "./EntitySchemaRelationIdOptions";
 /**
  * Interface for entity metadata mappings stored inside "schemas" instead of models decorated by decorators.
  */
@@ -56,21 +57,33 @@ export declare class EntitySchemaOptions<T> {
         [P in keyof T]?: EntitySchemaRelationOptions;
     };
     /**
-    * Entity indices options.
-    */
+     * Entity relation id options.
+     */
+    relationIds?: {
+        [P in keyof T]?: EntitySchemaRelationIdOptions;
+    };
+    /**
+     * Entity indices options.
+     */
     indices?: EntitySchemaIndexOptions[];
     /**
-    * Entity uniques options.
-    */
+     * Entity uniques options.
+     */
     uniques?: EntitySchemaUniqueOptions[];
     /**
-    * Entity check options.
-    */
+     * Entity check options.
+     */
     checks?: EntitySchemaCheckOptions[];
     /**
-    * Entity exclusion options.
-    */
+     * Entity exclusion options.
+     */
     exclusions?: EntitySchemaExclusionOptions[];
+    /**
+     * Embedded Entities options
+     */
+    embeddeds?: {
+        [P in keyof Partial<T>]: EntitySchemaEmbeddedColumnOptions;
+    };
     /**
      * Indicates if schema synchronization is enabled or disabled for this entity.
      * If it will be set to false then schema sync will and migrations ignore this entity.
@@ -78,7 +91,13 @@ export declare class EntitySchemaOptions<T> {
      */
     synchronize?: boolean;
     /**
+     * If set to 'true' this option disables Sqlite's default behaviour of secretly creating
+     * an integer primary key column named 'rowid' on table creation.
+     * @see https://www.sqlite.org/withoutrowid.html.
+     */
+    withoutRowid?: boolean;
+    /**
      * View expression.
      */
-    expression?: string | ((connection: Connection) => SelectQueryBuilder<any>);
+    expression?: string | ((connection: DataSource) => SelectQueryBuilder<any>);
 }

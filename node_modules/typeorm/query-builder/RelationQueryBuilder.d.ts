@@ -1,12 +1,14 @@
 import { QueryBuilder } from "./QueryBuilder";
+import { ObjectLiteral } from "../common/ObjectLiteral";
 /**
  * Allows to work with entity relations and perform specific operations with those relations.
  *
  * todo: add transactions everywhere
  */
-export declare class RelationQueryBuilder<Entity> extends QueryBuilder<Entity> {
+export declare class RelationQueryBuilder<Entity extends ObjectLiteral> extends QueryBuilder<Entity> {
+    readonly "@instanceof": symbol;
     /**
-     * Gets generated sql query without parameters being replaced.
+     * Gets generated SQL query without parameters being replaced.
      */
     getQuery(): string;
     /**

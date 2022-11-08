@@ -3,6 +3,7 @@ import { TableColumnOptions } from "../options/TableColumnOptions";
  * Table's columns in the database represented in this class.
  */
 export declare class TableColumn {
+    readonly "@instanceof": symbol;
     /**
      * Column name.
      */
@@ -31,7 +32,7 @@ export declare class TableColumn {
      * Specifies generation strategy if this column will use auto increment.
      * `rowid` option supported only in CockroachDB.
      */
-    generationStrategy?: "uuid" | "increment" | "rowid";
+    generationStrategy?: "uuid" | "increment" | "rowid" | "identity";
     /**
      * Indicates if column is a primary key.
      */
@@ -94,13 +95,21 @@ export declare class TableColumn {
      */
     enumName?: string;
     /**
-     * Generated column expression. Supports only in MySQL.
+     * Name of the primary key constraint for primary column.
+     */
+    primaryKeyConstraintName?: string;
+    /**
+     * Generated column expression.
      */
     asExpression?: string;
     /**
-     * Generated column type. Supports only in MySQL.
+     * Generated column type.
      */
     generatedType?: "VIRTUAL" | "STORED";
+    /**
+     * Identity column type. Supports only in Postgres 10+.
+     */
+    generatedIdentity?: "ALWAYS" | "BY DEFAULT";
     /**
      * Spatial Feature Type (Geometry, Point, Polygon, etc.)
      */

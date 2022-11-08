@@ -1,8 +1,8 @@
-import { BaseConnectionOptions } from "../../connection/BaseConnectionOptions";
+import { BaseDataSourceOptions } from "../../data-source/BaseDataSourceOptions";
 /**
  * Sqlite-specific connection options.
  */
-export interface ReactNativeConnectionOptions extends BaseConnectionOptions {
+export interface ReactNativeConnectionOptions extends BaseDataSourceOptions {
     /**
      * Database type.
      */
@@ -12,7 +12,13 @@ export interface ReactNativeConnectionOptions extends BaseConnectionOptions {
      */
     readonly database: string;
     /**
+     * The driver object
+     * This defaults to require("react-native-sqlite-storage")
+     */
+    readonly driver?: any;
+    /**
      * Storage Location
      */
     readonly location: string;
+    readonly poolSize?: never;
 }

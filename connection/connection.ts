@@ -1,14 +1,26 @@
-import { clientes } from "../entities/clientes";
-import { createConnection } from "typeorm";
+import "reflect-metadata";
+import { Clientes } from "../entities/clientes";
+import { DataSource } from "typeorm";
+import { Livros } from "../entities/livros";
 
-export const connection = createConnection({
+const Connection = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
   username: "postgres",
   password: "postgres",
   database: "api",
-  entities: [clientes],
+  entities: [Clientes, Livros],
   synchronize: true,
   logging: false,
 });
+
+Connection.initialize()
+  .then(() => {
+    console.log(`Banco de Dados inicializado com sucesso`);
+  })
+  .catch((err) => {
+    console.error(`Banco de Dados não inicializado`, err);
+  });
+
+export default Connection;

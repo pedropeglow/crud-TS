@@ -1,9 +1,9 @@
-import { BaseConnectionOptions } from "../../connection/BaseConnectionOptions";
+import { BaseDataSourceOptions } from "../../data-source/BaseDataSourceOptions";
 import { CockroachConnectionCredentialsOptions } from "./CockroachConnectionCredentialsOptions";
 /**
  * Cockroachdb-specific connection options.
  */
-export interface CockroachConnectionOptions extends BaseConnectionOptions, CockroachConnectionCredentialsOptions {
+export interface CockroachConnectionOptions extends BaseDataSourceOptions, CockroachConnectionCredentialsOptions {
     /**
      * Database type.
      */
@@ -12,6 +12,16 @@ export interface CockroachConnectionOptions extends BaseConnectionOptions, Cockr
      * Schema name.
      */
     readonly schema?: string;
+    /**
+     * The driver object
+     * This defaults to `require("pg")`.
+     */
+    readonly driver?: any;
+    /**
+     * The driver object
+     * This defaults to `require("pg-native")`.
+     */
+    readonly nativeDriver?: any;
     /**
      * Replication setup.
      */
@@ -25,5 +35,10 @@ export interface CockroachConnectionOptions extends BaseConnectionOptions, Cockr
          */
         readonly slaves: CockroachConnectionCredentialsOptions[];
     };
+    /**
+     * sets the application_name var to help db administrators identify
+     * the service using this connection. Defaults to 'undefined'
+     */
+    readonly applicationName?: string;
     readonly poolErrorHandler?: (err: any) => any;
 }

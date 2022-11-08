@@ -1,8 +1,8 @@
-import { BaseConnectionOptions } from "../../connection/BaseConnectionOptions";
+import { BaseDataSourceOptions } from "../../data-source/BaseDataSourceOptions";
 /**
  * Sql.js-specific connection options.
  */
-export interface SqljsConnectionOptions extends BaseConnectionOptions {
+export interface SqljsConnectionOptions extends BaseDataSourceOptions {
     /**
      * Database type.
      */
@@ -11,6 +11,11 @@ export interface SqljsConnectionOptions extends BaseConnectionOptions {
      * A Uint8Array that gets imported when the connection is opened.
      */
     readonly database?: Uint8Array;
+    /**
+     * The driver object
+     * This defaults to require("sql.js")
+     */
+    readonly driver?: any;
     /**
      * Config that's used to initialize sql.js.
      */
@@ -37,4 +42,5 @@ export interface SqljsConnectionOptions extends BaseConnectionOptions {
      * indexedDB instead of using the synchron local storage methods in a browser environment.
      */
     readonly useLocalForage?: boolean;
+    readonly poolSize?: never;
 }

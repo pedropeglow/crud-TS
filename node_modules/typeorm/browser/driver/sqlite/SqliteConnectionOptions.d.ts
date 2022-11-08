@@ -1,8 +1,8 @@
-import { BaseConnectionOptions } from "../../connection/BaseConnectionOptions";
+import { BaseDataSourceOptions } from "../../data-source/BaseDataSourceOptions";
 /**
  * Sqlite-specific connection options.
  */
-export interface SqliteConnectionOptions extends BaseConnectionOptions {
+export interface SqliteConnectionOptions extends BaseDataSourceOptions {
     /**
      * Database type.
      */
@@ -11,6 +11,11 @@ export interface SqliteConnectionOptions extends BaseConnectionOptions {
      * Storage type or path to the storage.
      */
     readonly database: string;
+    /**
+     * The driver object
+     * This defaults to require("sqlite3")
+     */
+    readonly driver?: any;
     /**
      * Encryption key for for SQLCipher.
      */
@@ -33,4 +38,5 @@ export interface SqliteConnectionOptions extends BaseConnectionOptions {
      * @see https://www.sqlite.org/wal.html
      */
     readonly enableWAL?: boolean;
+    readonly poolSize?: never;
 }
