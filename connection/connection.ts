@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Clientes } from "../entities/clientes";
+import { Cliente } from "../entities/cliente";
 import { DataSource } from "typeorm";
 import { Livros } from "../entities/livros";
 
@@ -10,7 +10,7 @@ const Connection = new DataSource({
   username: "postgres",
   password: "postgres",
   database: "api",
-  entities: [Clientes, Livros],
+  entities: [Cliente, Livros],
   synchronize: true,
   logging: false,
 });

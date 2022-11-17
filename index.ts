@@ -17,5 +17,5 @@ app.get("/api", (req, res) => {
   res.send("Bem-vindo a API");
 });
 
-app.use("/api/clientes", rotasCliente);
+app.use("/api/cliente", rotasCliente);
 app.use("/api/livros", rotasLivros);
