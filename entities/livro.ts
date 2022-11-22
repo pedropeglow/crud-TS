@@ -6,9 +6,6 @@ export class Livro {
   id_livro: number;
 
   @Column()
-  isnb: string;
-
-  @Column()
   nome_livro: string;
 
   @Column()

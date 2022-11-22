@@ -11,7 +11,7 @@ const Connection = new DataSource({
   username: "postgres",
   password: "postgres",
   database: "api",
-  entities: [Cliente, Autor],
+  entities: [Cliente, Autor, Livro],
   synchronize: true,
   logging: false,
 });

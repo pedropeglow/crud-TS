@@ -10,5 +10,6 @@ rotas.get("/", controller.listar);
 rotas.get("/:matricula", controller.buscarPorMatricula);
 rotas.post("/", controller.inserir);
 rotas.delete("/:matricula", controller.deletar);
+rotas.put("/:matricula", controller.atualizar);
 
 export default rotas;
