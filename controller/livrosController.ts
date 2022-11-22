@@ -1,8 +1,8 @@
 import Connection from "../connection/connection";
-import { Livros } from "../entities/livros";
+import { Livro } from "../entities/livro";
 
 export class LivrosController {
-  livrosRepository = Connection.getRepository(Livros);
+  livrosRepository = Connection.getRepository(Livro);
 
   listar = async (req: any, res: any) => {
     const livros: any = await this.livrosRepository.find();
@@ -11,10 +11,10 @@ export class LivrosController {
   };
 
   buscarPorId = async (req: any, res: any) => {
-    const id = req.params.id;
+    const id_livro = req.params.id_livro;
 
     const clientes = await this.livrosRepository.findOneBy({
-      id: id,
+      id_livro: id_livro,
     });
 
     res.json(clientes);
@@ -31,10 +31,10 @@ export class LivrosController {
     });
   };
 
-  excluir = async (req: any, res: any) => {
-    const user = await this.livrosRepository.delete(req.params.id);
+  deletar = async (req: any, res: any) => {
+    const user = await this.livrosRepository.delete(req.params.matricula);
     res.json({
-      message: "success",
+      message: "Cliente Excluído com Sucesso",
     });
   };
 

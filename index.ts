@@ -2,7 +2,8 @@ const express = require("express");
 import Connection from "./connection/connection";
 Connection;
 import rotasCliente from "./routes/clientesRoutes";
-import rotasLivros from "./routes/livrosRoutes";
+import rotasLivro from "./routes/livrosRoutes";
+import rotasAutor from "./routes/autoresRoutes";
 
 const app = express();
 app.use(express.json());
@@ -18,4 +19,5 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/api/cliente", rotasCliente);
-app.use("/api/livros", rotasLivros);
+app.use("/api/livro", rotasLivro);
+app.use("/api/autor", rotasAutor);
