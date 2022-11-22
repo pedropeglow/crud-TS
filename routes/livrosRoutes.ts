@@ -7,8 +7,8 @@ const rotas = Router();
 const controller = new LivrosController();
 
 rotas.get("/", controller.listar);
-rotas.get("/:id", controller.buscarPorId);
+rotas.get("/:id_livro", controller.buscarPorId);
 rotas.post("/", controller.inserir);
-rotas.delete("/:id", controller.deletar);
+rotas.delete("/:id_livro", controller.deletar);
 
 export default rotas;

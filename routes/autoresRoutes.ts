@@ -10,5 +10,6 @@ rotas.get("/", controller.listar);
 rotas.get("/:id_autor", controller.buscarPorId);
 rotas.post("/", controller.inserir);
 rotas.delete("/:id_autor", controller.deletar);
+rotas.put("/:id_autor", controller.atualizar);
 
 export default rotas;
