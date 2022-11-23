@@ -52,17 +52,21 @@ export class ClientesController {
   };
 
   atualizar = async (req: any, res: any) => {
+    const { matricula } = req.params;
     try {
-      const cliente = await this.clientesRepository.findOne(
-        req.params.matricula
+      const cliente_update = await this.clientesRepository.update(
+        matricula,
+        req.body
       );
-      this.clientesRepository.merge(cliente, req.body);
-      const result = await this.clientesRepository.save(cliente);
-      return res
-        .status(200)
-        .json({ message: "Cliente atualizado com sucesso", payload: result });
+      return res.status(200).json({
+        message: "Update operation success.",
+        data: cliente_update,
+      });
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({
+        message: "Erro ao tentar atualizar cliente.",
+        info: error,
+      });
     }
   };
 }
