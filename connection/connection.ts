@@ -10,7 +10,7 @@ const Connection = new DataSource({
   port: 5432,
   username: "postgres",
   password: "postgres",
-  database: "api",
+  database: "progFullStack",
   entities: [Cliente, Autor, Livro],
   synchronize: true,
   logging: false,
