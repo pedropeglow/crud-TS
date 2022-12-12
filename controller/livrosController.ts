@@ -21,10 +21,10 @@ export class LivrosController {
       const livro = await this.livrosRepository.findOneBy({
         id_livro: id_livro,
       });
-      if (livro){
+      if (livro) {
         return res.status(200).json(livro);
-      }else{
-        return res.status(200).json({message: "Livro não encontrado!"})
+      } else {
+        return res.status(200).json("Livro não encontrado!");
       }
     } catch (error) {
       return res.status(500).json({ error });
@@ -32,19 +32,21 @@ export class LivrosController {
   };
 
   inserir = async (req: any, res: any) => {
-    if(req.body.nome_livro && req.body.editora && req.body.ano_publicacao && req.body.id_autor){
+    if (
+      req.body.nome_livro &&
+      req.body.editora &&
+      req.body.ano_publicacao &&
+      req.body.id_autor
+    ) {
       try {
         const livro = await this.livrosRepository.create(req.body);
         const results = await this.livrosRepository.save(livro);
-        return res.status(200).json({
-          message: "Livro Inserido com Sucesso",
-          payload: results,
-        });
+        return res.status(200).json("Livro Inserido com Sucesso");
       } catch (error) {
-        return res.status(400).json({ message: "Autor Não Encontrado" });       
+        return res.status(400).json("Autor Não Encontrado");
       }
-    }else{
-      return res.status(400).json({ message: "Preencha os campos corretamente" })
+    } else {
+      return res.status(400).json("Preencha os campos corretamente");
     }
   };
 
@@ -52,12 +54,12 @@ export class LivrosController {
     const livros = await this.livrosRepository.findOneBy({
       id_livro: req.params.id_livro,
     });
-    if(!livros){
-      return res.status(404).json({message: "Livro não encontrado"})
-    }else {
+    if (!livros) {
+      return res.status(400).json("Livro não encontrado");
+    } else {
       try {
         const livro = await this.livrosRepository.delete(req.params.id_livro);
-        return res.status(200).json({ message: "Livro Excluído com Sucesso" });
+        return res.status(200).json("Livro Excluído com Sucesso");
       } catch (error) {
         return res.status(500).json({ error });
       }
@@ -72,25 +74,24 @@ export class LivrosController {
         req.body
       );
       const livros = await this.livrosRepository.findOneBy({
-        id_livro: req.params.id_livro
-      })
-      if(livros){
-        if(req.body.nome_livro || req.body.editora || req.body.ano_publicacao || req.body.id_autor){
-          return res.status(200).json({
-            message: "Livro atualizado com sucesso."
-          });
-        }else{
-          return res.status(400).json({message: "Preencha os campos corretamente"})
-        }
-      }else{
-        return res.status(200).json({message: "Livro não encontrado"})
-      }
-      
-    } catch (error) {
-      return res.status(500).json({
-        message: "Erro ao tentar atualizar livro.",
-        info: error,
+        id_livro: req.params.id_livro,
       });
+      if (livros) {
+        if (
+          req.body.nome_livro ||
+          req.body.editora ||
+          req.body.ano_publicacao ||
+          req.body.id_autor
+        ) {
+          return res.status(200).json("Livro atualizado com sucesso.");
+        } else {
+          return res.status(400).json("Preencha os campos corretamente");
+        }
+      } else {
+        return res.status(200).json("Livro não encontrado");
+      }
+    } catch (error) {
+      return res.status(500).json("Erro ao tentar atualizar livro.");
     }
   };
 }
