@@ -43,7 +43,7 @@ export class LivrosController {
         const results = await this.livrosRepository.save(livro);
         return res.status(200).json("Livro Inserido com Sucesso");
       } catch (error) {
-        return res.status(400).json("Autor Não Encontrado");
+        return res.status(200).json("Autor Não Encontrado");
       }
     } else {
       return res.status(400).json("Preencha os campos corretamente");
