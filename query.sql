@@ -17,3 +17,6 @@ select * from livro
 select livro.nome_livro, livro.editora, livro.ano_publicacao, livro.id_autor, autor.nome_autor 
 from livro, autor where livro.id_autor = autor.id_autor
 
+ALTER TABLE tabela_filha
+ADD CONSTRAINT nome_constraint FOREIGN KEY (coluna) REFERENCES tabela-pai(coluna)
+
